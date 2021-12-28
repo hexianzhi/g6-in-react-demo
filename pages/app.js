@@ -26,7 +26,6 @@ export default function() {
     // 监听edge上面mouse事件
     graph.on('edge:mouseenter', evt => {
       const { item, target } = evt
-      debugger
       const type = target.get('type')
       if(type !== 'text') {
         return
@@ -55,7 +54,7 @@ export default function() {
 
       setNodeToolTipX(point.x - 75)
       setNodeToolTipY(point.y + 15)
-      setShowNodeTooltip(true)
+      // setShowNodeTooltip(true)
     })
   
     // 节点上面触发mouseleave事件后隐藏tooltip和ContextMenu

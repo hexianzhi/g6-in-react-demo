@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/baizn/g6-in-react#readme",
   "dependencies": {
-    "@antv/g6": "^3.4.0",
+    "@antv/g6": "^4.5.1",
     "antd": "^3.23.5",
     "html-webpack-plugin": "^4.2.0",
     "react": "^16.13.1",
@@ -30,9 +30,9 @@
     "webpack": "^4.42.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.9.6",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-react": "^7.9.4",
-    "@babel/core": "^7.9.6",
     "babel-loader": "^8.1.0",
     "css-loader": "^3.5.2",
     "postcss-loader": "^3.0.0",

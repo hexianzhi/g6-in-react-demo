@@ -1,99 +1,109 @@
-import React, { useEffect } from 'react';
-import ReactDOM from 'react-dom';
-import { Button } from 'antd'
-import G6 from '@antv/g6';
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom";
+import { Button } from "antd";
+import G6 from "@antv/g6";
+import treeGraph from "./treeGraph";
 
 const treeData = {
-  id: 'root',
-  label: 'Root',
+  id: 'test1',
+
   children: [
     {
-      id: 'SubTreeNode1',
-      label: 'subroot1',
+      id: 'test2',
+
       children: [
         {
-          id: 'SubTreeNode1.1',
-          label: 'subroot1.1',
-        }
-      ]
+          id: 'Logistic regressiontest2 ',
+
+          children: [{ id: 'L123sion', children: [{ id: 'L123sionccc' }] }],
+        },
+        { id: 'Linear discriminant analysis test2' },
+        { id: 'Rules test2' },
+        { id: 'Decision trees test2' },
+        { id: 'Naive Bayes test2' },
+        { id: 'K nearest neighbor test2' },
+        { id: 'Probabilistic neural networ test2k' },
+        {
+          id: 'Support vector machine test2',
+          children: [
+            { id: 'L1qwe23sion', line: 'line1' },
+            { id: 'Supqweport vector machine test2' },
+          ],
+        },
+      ],
     },
     {
-      id: 'SubTreeNode2',
-      label: 'subroot2',
+      id: 'test3',
       children: [
         {
-          id: 'SubTreeNode2.1',
-          label: 'subroot2.1',
+          id: 'Models diversity test3',
+          children: [
+            { id: 'Different initialization test3' },
+            { id: 'Different parameter choices test3' },
+            { id: 'Different architectures test3' },
+            { id: 'Different modeling methods test3' },
+            { id: 'Different training sets test3' },
+            { id: 'Different feature sets test3' },
+          ],
         },
         {
-          id: 'SubTreeNode2.2',
-          label: 'subroot2.2',
-        }
-      ]
-    } 
-  ]
+          id: 'Methods test3',
+          children: [
+            { id: 'Classifier selection test3' },
+            { id: 'Classifier fusion test3' },
+          ],
+        },
+        {
+          id: 'Common test3',
+          children: [
+            { id: 'Bagging test3' },
+            { id: 'Boosting test3' },
+            { id: 'AdaBoost test3' },
+          ],
+        },
+      ],
+    },
+    {
+      id: 'Regression',
+      children: [
+        { id: 'Multiple linear regression' },
+        { id: 'Partial least squares' },
+        {
+          id: 'Multi-layer feedforward neural network',
+        },
+        { id: 'General regression neural network' },
+        { id: 'Support vector regression' },
+      ],
+    },
+  ],
 };
 
 const TreeGraphReact = () => {
-  const ref = React.useRef(null)
-  let graph = null
+  const ref = React.useRef(null);
+  let graph = null;
 
   useEffect(() => {
-    if(!graph) {
-
-      graph = new G6.TreeGraph({
-        container: ref.current,
-        width: 500,
-        height: 500,
-        modes: {
-          default: ['drag-canvas']
-        },
-        defaultEdge: {
-          shape: 'cubic-horizontal',
-          style: {
-            stroke: '#A3B1BF'
-          }
-        },
-        defaultNode: {
-          shape: 'rect',
-          labelCfg: {
-            style: {
-              fill: '#000000A6',
-              fontSize: 10
-            }
-          },
-          style: {
-            stroke: '#72CC4A',
-            width: 150
-          }
-        },
-        layout: {
-          type: 'dendrogram', // 布局类型
-          direction: 'LR',    // 自左至右布局，可选的有 H / V / LR / RL / TB / BT
-          nodeSep: 50,      // 节点之间间距
-          rankSep: 200      // 每个层级之间的间距
-        }
-      })
-    }
-    graph.data(treeData)
-    graph.render()
-  }, [])
+    graph = new treeGraph({ container: ref.current, originData: treeData });
+    graph.init();
+  }, []);
 
   const handleChangeData = () => {
-    const node = graph.findById('SubTreeNode1')
+    const node = graph.findById("SubTreeNode1");
     graph.updateItem(node, {
-      label: 'xxx',
+      label: "xxx",
       style: {
-        fill: 'red'
-      }
-    })
-  }
+        fill: "red",
+      },
+    });
+  };
 
   return (
     <div ref={ref}>
-      <Button onClick={handleChangeData} type='primary'>更新数据源</Button>
+      <Button onClick={handleChangeData} type="primary">
+        更新数据源
+      </Button>
     </div>
   );
-}
+};
 
-export default TreeGraphReact
+export default TreeGraphReact;
